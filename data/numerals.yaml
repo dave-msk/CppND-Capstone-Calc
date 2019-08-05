@@ -1,22 +1,14 @@
-"root":
-  "s1": "123456789"
-  "s2": "0"
-  "s3": "."
 "states":
-  "s1":
-    "terminal": true
-    "transitions":
-      "s1": "0123456789"
-      "s4": "."
-  "s2":
-    "terminal": true
-    "transitions":
-      "s4": "."
-  "s3":
-    "terminal": false
-    "transitions":
-      "s4": "0123456789"
-  "s4":
-    "terminal": true
-    "transitions":
-      "s4": "0123456789"
+  - {"id": "numeral/s1", "terminal": true}
+  - {"id": "numeral/s2", "terminal": true}
+  - {"id": "numeral/s3", "terminal": false}
+  - {"id": "numeral/s4", "terminal": true}
+"transitions":
+  - {"src": "", "dst": "numeral/s1", "transitions": "123456789"}
+  - {"src": "", "dst": "numeral/s2", "transitions": "0"}
+  - {"src": "", "dst": "numeral/s3", "transitions": "."}
+  - {"src": "numeral/s1", "dst": "numeral/s1", "transitions": "0123456789"}
+  - {"src": "numeral/s1", "dst": "numeral/s4", "transitions": "."}
+  - {"src": "numeral/s2", "dst": "numeral/s4", "transitions": "."}
+  - {"src": "numeral/s3", "dst": "numeral/s4", "transitions": "0123456789"}
+  - {"src": "numeral/s4", "dst": "numeral/s4", "transitions": "0123456789"}
