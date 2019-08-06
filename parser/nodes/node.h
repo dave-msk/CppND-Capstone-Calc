@@ -13,32 +13,16 @@ class Node : public std::enable_shared_from_this<Node> {
   Node(Precedence precedence) : priority_(precedence) {}
   virtual ~Node() {}
 
-  std::shared_ptr<Node> AddNode(std::shared_ptr<Node> node); {
-    Node *parent = parent_.get();
-    while (!node->IsValidParent(*parent)) {
-      parent = parent->parent_.get();
-    }
-    return node->ExtendTree(*parent);
-  }
-
   float GetValue() { return ComputeValue(); }
-  std::shared_ptr<Node> GetParent() const { return parent_; }
+  std::shared_ptr<Node> AddNode(std::unique_ptr<Node>);
+  std::shared_ptr<Node> GetParent() { return parent_; }
  
  private:
-  virtual float ComputeValue() { return 0f; }
+  using std::enable_shared_from_this<Node>::shared_from_this;
   
-  virtual bool IsValidParent(const Node& node) const {
-    return node.priority_ < priority_;
-  };
-
-  virtual std::shared_ptr<Node> ExtendTree(Node& parent) {
-    parent_ = parent.shared_from_this();
-    if (parent.right_ != nullptr && left_ == nullptr) {
-      left_ = std::move(parent.right_);
-      parent.right_ = shared_from_this();
-      left_->parent_ = shared_from_this();
-    }
-  };
+  virtual float ComputeValue();
+  virtual bool IsValidParent(const Node& node) const;
+  virtual std::shared_ptr<Node> ExtendTree(Node& parent);
 
   const Priority priority_;
   
