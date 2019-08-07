@@ -1,5 +1,5 @@
-#ifndef CPPND_CAPSTONE_CALC_PARSER_PriorityS_PRECEDENCE_H_
-#define CPPND_CAPSTONE_CALC_PARSER_PriorityS_PRECEDENCE_H_
+#ifndef CPPND_CAPSTONE_CALC_CORE_PriorityS_PRECEDENCE_H_
+#define CPPND_CAPSTONE_CALC_CORE_PriorityS_PRECEDENCE_H_
 
 #include <cstddef>
 
@@ -38,4 +38,4 @@ class Priority {
 
 }  // namespace calc
 
-#endif  // CPPND_CAPSTONE_CALC_PARSER_PriorityS_PRECEDENCE_H_
+#endif  // CPPND_CAPSTONE_CALC_CORE_PriorityS_PRECEDENCE_H_

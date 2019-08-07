@@ -1,22 +1,19 @@
-#ifndef CPPND_CAPSTONE_CALC_PARSER_FSM_FACTORIES_H_
-#define CPPND_CAPSTONE_CALC_PARSER_FSM_FACTORIES_H_
+#include "core/tokenizer/utils.h"
 
-#include <iostream>
 #include <memory>
 #include <string>
+#include <vector>
 
 #include "yaml-cpp/yaml.h"
 
-#include "parser/fsm/graph.h"
+#include "core/fsm/graph.h"
 
 namespace calc {
-namespace fsm {
+namespace tokens {
 
-template<typename StrIter>
 std::unique_ptr<Graph<char>> CreateTokenizationGraph(
     const std::string& num_config_file,
-    StrIter symbols_begin,
-    StrIter symbols_end) {
+    const std::vector<std::string>& symbols) {
   auto graph_ptr = std::make_unique<Graph<char>>();
 
   // 1. Define subgraph for numerals
@@ -44,7 +41,7 @@ std::unique_ptr<Graph<char>> CreateTokenizationGraph(
 
   // 2. Define subgraph for symbols
   // This is actually a trie
-  for (auto it = symbols_begin; it != symbols_end; ++it) {
+  for (auto it = symbols.begin(); it != symbols.end(); ++it) {
     const std::string &symbol = *it;
     const std::size_t size = symbol.size();
     for (std::size_t i = 0; i < size; ++i) {
@@ -61,7 +58,5 @@ std::unique_ptr<Graph<char>> CreateTokenizationGraph(
   return graph_ptr;
 }
 
-}  // namespace fsm
+}  // namespace tokens
 }  // namespace calc
-
-#endif  // CPPND_CAPSTONE_CALC_PARSER_FSM_FACTORIES_H_

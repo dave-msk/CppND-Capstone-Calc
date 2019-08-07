@@ -1,12 +1,12 @@
-#include "parser/tokenizer.h"
+#include "core/tokenizer/tokenizer.h"
 
 #include <memory>
 #include <sstream>
 #include <utility>
 #include <vector>
 
-#include "parser/fsm/graph.h"
-#include "parser/exception.h"
+#include "core/fsm/graph.h"
+#include "core/exception.h"
 
 namespace calc {
 

@@ -1,5 +1,5 @@
-#ifndef CPPND_CAPSTONE_CALC_PARSER_FSM_GRAPH_H_
-#define CPPND_CAPSTONE_CALC_PARSER_FSM_GRAPH_H_
+#ifndef CPPND_CAPSTONE_CALC_CORE_FSM_GRAPH_H_
+#define CPPND_CAPSTONE_CALC_CORE_FSM_GRAPH_H_
 
 #include <iostream>
 
@@ -122,4 +122,4 @@ void Graph<Trans>::Reset() {
 }  // namespace fsm
 }  // namespace calc
 
-#endif  // CPPND_CAPSTONE_CALC_PARSER_FSM_GRAPH_H_
+#endif  // CPPND_CAPSTONE_CALC_CORE_FSM_GRAPH_H_

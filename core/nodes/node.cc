@@ -1,4 +1,4 @@
-#include "parser/nodes"
+#include "core/nodes/node.h"
 
 #include <memory>
 #include <utility>

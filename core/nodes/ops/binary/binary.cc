@@ -1,7 +1,7 @@
-#include "parser/nodes/ops/binary.h"
+#include "core/nodes/ops/binary.h"
 
-#include "parser/nodes/node.h"
-#include "parser/nodes/priority.h"
+#include "core/nodes/node.h"
+#include "core/nodes/priority.h"
 
 namespace calc {
 

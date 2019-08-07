@@ -1,10 +1,10 @@
-#ifndef CPPND_CAPSTONE_CALC_PARSER_TOKENIZER_H_
-#define CPPND_CAPSTONE_CALC_PARSER_TOKENIZER_H_
+#ifndef CPPND_CAPSTONE_CALC_CORE_TOKENIZER_H_
+#define CPPND_CAPSTONE_CALC_CORE_TOKENIZER_H_
 
 #include <memory>
 #include <vector>
 
-#include "parser/fsm/graph.h"
+#include "core/fsm/graph.h"
 
 namespace calc {
 
@@ -20,4 +20,4 @@ class Tokenizer {
 
 }  // namespace calc
 
-#endif  // CPPND_CAPSTONE_CALC_PARSER_TOKENIZER_H_
+#endif  // CPPND_CAPSTONE_CALC_CORE_TOKENIZER_H_

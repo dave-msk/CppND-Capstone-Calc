@@ -4,8 +4,8 @@
 #include <sstream>
 #include <vector>
 
-#include "parser/fsm/factories.h"
-#include "parser/tokenizer.h"
+#include "core/fsm/factories.h"
+#include "core/tokenizer.h"
 #include "ui/shell.h"
 
 int main() {
