@@ -7,12 +7,17 @@
 #include "core/nodes/priority.h"
 
 namespace calc {
+
+namespace parser {
+  class Grammar;
+}  // namespace parser
+
 namespace nodes {
 
-class Node : public std::enable_shared_from_this<Node> {
- public:
-  
+class Node {
+  friend ::calc::parser::Grammar;
 
+ public:
   Node(Precedence precedence) : priority_(precedence) {}
   virtual ~Node() {}
 

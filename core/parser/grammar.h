@@ -1,6 +1,7 @@
 #ifndef CPPND_CAPSTONE_CALC_CORE_PARSER_GRAMMAR_H_
 #define CPPND_CAPSTONE_CALC_CORE_PARSER_GRAMMAR_H_
 
+#include <memory>
 #include <string>
 #include <unordered_map>
 #include <variant>
@@ -21,14 +22,16 @@ class Grammar {
                                 ::calc::nodes::BinaryOpType,
                                 ::calc::nodes::UnaryOpType,
                                 ::calc::nodes::MiscType>;
+  
+  Grammar() = default;
 
   void AddSymbol(std::string symbol,
                  SymbolType symbol_type,
                  NodeType node_type);
   
-  void AddRule(std::string src, std::string dst, SymbolType symbol_type)
+  void AddRule(std::string src, std::string dst, SymbolType symbol_type);
   
-
+  std::unique_ptr<Node> Parse(const std::vector<std::string>&);
 
  private:
   struct SymbolMeta {
@@ -37,7 +40,7 @@ class Grammar {
   };
   using MetaMap = std::unordered_map<std::string, SymbolMeta>;
 
-  std::unordered_map<std::string, MetaMap>; 
+  std::unordered_map<std::string, MetaMap> states_to_meta_; 
   ::calc::fsm::Graph<SymbolType> fsm_graph_;
 };
 
