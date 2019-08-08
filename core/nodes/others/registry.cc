@@ -4,8 +4,10 @@
 
 #include "core/nodes/node.h"
 #include "core/nodes/others/bracket.h"
+#include "core/nodes/others/type.h"
 
 namespace calc {
+namespace nodes {
 
 std::unique<Node> CreateNode(MiscType type) {
   switch (type) {
@@ -16,4 +18,5 @@ std::unique<Node> CreateNode(MiscType type) {
   }
 }
 
+}  // namespace nodes
 }  // namespace calc

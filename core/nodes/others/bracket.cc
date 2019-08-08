@@ -6,6 +6,7 @@
 #include "core/nodes/priority.h"
 
 namespace calc {
+namespace nodes {
 
 OpenBracket::OpenBracket() : Node(Precedence::ONE) {}
 
@@ -24,4 +25,5 @@ std::shared_ptr<Node> CloseBracket::ExtendTree(Node& open_bracket) {
   return parent;
 }
 
+}  // namespace nodes
 }  // namespace calc

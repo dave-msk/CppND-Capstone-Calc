@@ -4,6 +4,7 @@
 #include <cstddef>
 
 namespace calc {
+namespace nodes {
 
 enum class Precedence : std::size_t {
   ONE = 1,
@@ -36,6 +37,7 @@ class Priority {
   bool left_associative_;
 };
 
+}  // namespace nodes
 }  // namespace calc
 
 #endif  // CPPND_CAPSTONE_CALC_CORE_PriorityS_PRECEDENCE_H_

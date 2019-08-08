@@ -5,9 +5,11 @@
 #include "core/nodes/node.h"
 #include "core/nodes/ops/binary/binary.h"
 #include "core/nodes/ops/binary/functions.h"
+#include "core/nodes/ops/binary/type.h"
 #include "core/nodes/priority.h"
 
 namespace calc {
+namespace nodes {
 
 std::unique_ptr<Node> CreateNode(BinaryOpType type) {
   Precedence prec;
@@ -47,4 +49,5 @@ std::unique_ptr<Node> CreateNode(BinaryOpType type) {
   return nullptr;
 }
 
+}  // namespace nodes
 }  // namespace calc

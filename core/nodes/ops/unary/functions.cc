@@ -3,6 +3,7 @@
 #include <cmath>
 
 namespace calc {
+namespace nodes {
 namespace unaryfn {
 
 float Negate(float value) {
@@ -38,4 +39,5 @@ float Tanh(float value) {
 }
 
 }  // namespace unaryfn
+}  // namespace nodes
 }  // namespace calc

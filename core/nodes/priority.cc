@@ -3,6 +3,7 @@
 #include <cstddef>
 
 namespace calc {
+namespace nodes {
 
 Priority::Priority(Precedence precedence)
     : index_(inst_count_++),
@@ -54,4 +55,5 @@ bool operator>=(const Priority& left, const Priority& right) {
   return left > right || left == right;
 }
 
+}  // namespace nodes
 }  // namespace calc

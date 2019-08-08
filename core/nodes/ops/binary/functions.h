@@ -2,6 +2,7 @@
 #define CPPND_CAPSTONE_CALC_CORE_NODES_OPS_BINARY_FUNCTIONS_H_
 
 namespace calc {
+namespace nodes {
 namespace binaryfn {
 
 float Add(float, float);
@@ -11,6 +12,7 @@ float Divide(float, float);
 float Power(float, float);
 
 }  // binaryfn
+}  // nodes
 }  // namespace calc
 
 #endif  // CPPND_CAPSTONE_CALC_CORE_NODES_OPS_BINARY_FUNCTIONS_H_

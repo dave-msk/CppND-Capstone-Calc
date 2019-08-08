@@ -6,8 +6,10 @@
 #include "core/nodes/priority.h"
 #include "core/nodes/ops/unary/unary.h"
 #include "core/nodes/ops/unary/functions.h"
+#include "core/nodes/ops/unary/type.h"
 
 namespace calc {
+namespace nodes {
 
 std::unique_ptr<Node> CreateNode(UnaryOpType type) {
   switch (type) {
@@ -40,4 +42,5 @@ std::unique_ptr<Node> CreateNode(UnaryOpType type) {
   }
 }
 
+}  // nodes
 }  // namespace calc

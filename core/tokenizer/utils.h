@@ -14,7 +14,7 @@ std::unique_ptr<Graph<char>> CreateTokenizationGraph(
     const std::string& num_config_file,
     const std::vector<std::string>& symbols);
 
-}
-}
+}  // namespace tokens
+}  // namespace calc
 
 #endif  // CPPND_CAPSTONE_CALC_CORE_TOKENIZER_UTILS_H_

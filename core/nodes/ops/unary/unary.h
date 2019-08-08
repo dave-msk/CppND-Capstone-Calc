@@ -5,6 +5,7 @@
 #include "core/nodes/priority.h"
 
 namespace calc {
+namespace nodes {
 
 class UnaryOp : public Node {
  public:
@@ -28,6 +29,7 @@ class FunctionOp : public UnaryOp {
   virtual bool IsValidParent(const Node&) const { return true; }
 }
 
+}  // namespace nodes
 }  // namespace calc
 
 #endif  // CPPND_CAPSTONE_CALC_CORE_NODES_OPS_UNARY_UNARY_H_

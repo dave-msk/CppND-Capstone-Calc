@@ -7,6 +7,7 @@
 #include "core/nodes/priority.h"
 
 namespace calc {
+namespace nodes {
 
 class OpenBracket : public Node {
  public:
@@ -25,6 +26,7 @@ class CloseBracket : public Node {
   virtual std::shared_ptr<Node> ExtendTree(Node& parent);
 };
 
+}  // namespace nodes
 }  // namespace calc
 
 #endif  // CPPND_CAPSTONE_CALC_CORE_NODES_OTHERS_BRACKET_H_

@@ -5,6 +5,7 @@
 #include "core/nodes/priority.h"
 
 namespace calc {
+namespace nodes {
 
 class BinaryOp : public Node {
  public:
@@ -18,6 +19,7 @@ class BinaryOp : public Node {
   const BinaryFn func_;
 }
 
+}  // namespace nodes
 }  // namespace calc
 
 #endif  // CPPND_CAPSTONE_CALC_CORE_NODES_OPS_BINARY_H_

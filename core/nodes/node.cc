@@ -4,6 +4,7 @@
 #include <utility>
 
 namespace calc {
+namespace nodes {
 
 std::shared_ptr<Node> Node::AddNode(std::unique_ptr<Node> node) {
   std::shared_ptr<Node> shared_node{std::move(node)};
@@ -32,4 +33,5 @@ std::shared_ptr<Node> Node::ExtendTree(Node& parent) {
   return shared_from_this();
 }
 
+}  // namespace nodes
 }  // namespace calc

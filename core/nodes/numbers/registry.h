@@ -3,18 +3,16 @@
 
 #include <memory>
 
-#include "core/nodes.node.h"
+#include "core/nodes/node.h"
+#include "core/nodes/numbers/type.h"
 
 namespace calc {
-
-enum class Constant {
-  E,
-  PI
-}
+namespace nodes {
 
 std::unique_ptr<Node> CreateNode(Constant);
 std::unique_ptr<Node> CreateNode(float);
 
+}  // namespace nodes
 }  // namespace calc
 
 #endif  // CPPND_CAPSTONE_CALC_CORE_NODES_NUMBERS_REGISTRY_H_

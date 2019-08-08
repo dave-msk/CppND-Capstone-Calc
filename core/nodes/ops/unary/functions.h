@@ -2,6 +2,7 @@
 #define CPPND_CAPSTONE_CALC_CORE_NODES_OPS_UNARY_FUNCTIONS_H_
 
 namespace calc {
+namespace nodes {
 namespace unaryfn {
 
 float Negate(float);
@@ -14,6 +15,7 @@ float Cosh(float);
 float Tanh(float);
 
 }  // namespace unaryfn
+}  // namespace nodes
 }  // namespace calc
 
 #endif  // CPPND_CAPSTONE_CALC_CORE_NODES_OPS_UNARY_FUNCTIONS_H_

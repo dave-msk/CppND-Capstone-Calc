@@ -7,6 +7,7 @@
 #include "core/fsm/graph.h"
 
 namespace calc {
+namespace tokens {
 
 class Tokenizer {
  public:
@@ -18,6 +19,7 @@ class Tokenizer {
   std::unique_ptr<fsm::Graph<char>> graph_;
 };
 
+}  // namespace tokens
 }  // namespace calc
 
 #endif  // CPPND_CAPSTONE_CALC_CORE_TOKENIZER_H_

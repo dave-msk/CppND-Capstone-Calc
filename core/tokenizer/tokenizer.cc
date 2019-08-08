@@ -9,6 +9,7 @@
 #include "core/exception.h"
 
 namespace calc {
+namespace tokens {
 
 Tokenizer::Tokenizer(std::unique_ptr<fsm::Graph<char>> graph)
     : graph_(std::move(graph)) {}
@@ -51,4 +52,5 @@ std::vector<std::string> Tokenizer::Tokenize(const std::string& input) const {
   return tokens;
 }
 
+}  // namespace tokens
 }  // namespace calc

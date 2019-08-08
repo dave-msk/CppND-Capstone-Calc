@@ -5,6 +5,7 @@
 #include "core/nodes/priority.h"
 
 namespace calc {
+namespace nodes {
 
 class Number : public Node {
  public:
@@ -16,6 +17,7 @@ class Number : public Node {
   float value_;
 };
 
+}  // namespace nodes
 }  // namespace calc
 
 #endif  // CPPND_CAPSTONE_CALC_CORE_NODES_NUMBER_H_
