@@ -9,5 +9,10 @@ enum class Constant {
   PI
 };
 
+struct Literal {
+  explicit Literal(float value) : value(value) {}
+  float value;
+};
+
 }  // namespace nodes
 }  // namespace calc

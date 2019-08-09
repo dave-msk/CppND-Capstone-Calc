@@ -1,0 +1,14 @@
+"states":
+  - {"id" "grammar/start", "terminal": false}
+  - {"id" "grammar/function", "terminal": false}
+  - {"id" "grammar/end", "terminal": true}
+"transitions":
+  - {"src": "", "dst": "grammar/start", "transitions": "OP"}
+  - {"src": "", "dst": "grammar/function", "transitions": "F"}
+  - {"src": "", "dst": "grammar/end", "transitions": "V"}
+  - {"src": "grammar/start", "dst": "grammar/start", "transitions": "OP"}
+  - {"src": "grammar/start", "dst": "grammar/function", "transitions": "F"}
+  - {"src": "grammar/start", "dst": "grammar/end", "transitions": "V"}
+  - {"src": "grammar/function", "dst": "grammar/start", "transitions": "O"}
+  - {"src": "grammar/end", "dst": "grammar/start", "transitions": "I"}
+  - {"src": "grammar/end", "dst": "grammar/end", "transitions": "CS"}

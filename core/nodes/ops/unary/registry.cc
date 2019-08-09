@@ -15,11 +15,11 @@ std::unique_ptr<Node> CreateNode(UnaryOpType type) {
   switch (type) {
     case UnaryOpType::NEGATE: {
       return std::unique_ptr<Node>(
-          new UnaryOp(Precedence::THREE, true, &unaryfn::Negate));
+          new UnaryOp(Precedence::THREE, true,& unaryfn::Negate));
     }
     case UnaryOpType::IDENTITY: {
       return std::unique_ptr<Node>(
-          new UnaryOp(Precedence::THREE, true, &unaryfn::Identity));
+          new UnaryOp(Precedence::THREE, true,& unaryfn::Identity));
     }
     case UnaryOpType::SIN: {
       return std::unique_ptr<Node>(new FunctionOp(&unaryfn::Sin));

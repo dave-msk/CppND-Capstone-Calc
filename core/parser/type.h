@@ -5,13 +5,13 @@ namespace calc {
 namespace parser {
 
 enum class SymbolType {
-  CLOSE,
-  OPEN,
   PREFIX,
   INFIX,
   SUFFIX,
   VALUE,
-  FUNCTION
+  FUNCTION,
+  OPEN,
+  CLOSE
 };
 
 }  // namespace parser

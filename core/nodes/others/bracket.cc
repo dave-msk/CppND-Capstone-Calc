@@ -1,7 +1,5 @@
 #include "core/nodes/others/bracket.h"
 
-#include <memory>
-
 #include "core/nodes/node.h"
 #include "core/nodes/priority.h"
 
@@ -18,10 +16,19 @@ bool CloseBracket::IsValidParent(const Node& node) const {
   return dynamic_cast<OpenBracket*>(std::addressof(node)) != nullptr;
 }
 
-std::shared_ptr<Node> CloseBracket::ExtendTree(Node& open_bracket) {
-  std::shared_ptr<Node> parent{open_bracket.parent_};
-  parent->right_ = std::move(open_bracket->right_);
-  parent->right_->parent_ = std::move(open_bracket.parent_);
+Node* CloseBracket::ExtendTree(Node* open_bracket) {
+  Node* parent = open_bracket->parent_;
+  parent->right_ = open_bracket->right_;
+  parent->right_->parent_ = parent;
+
+  open_bracket->parent_ = nullptr;
+  open_bracket->left_ = nullptr;
+  open_bracket->right_ = nullptr;
+  parent_ = nullptr;
+  left_ = nullptr;
+  right_ = nullptr;
+
+  delete open_bracket, this;
   return parent;
 }
 

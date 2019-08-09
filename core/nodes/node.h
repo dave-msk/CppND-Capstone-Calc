@@ -2,31 +2,30 @@
 #define CPPND_CAPSTONE_CALC_CORE_NODES_NODE_H_
 
 #include <memory>
-#include <utility>
 
 #include "core/nodes/priority.h"
 
 namespace calc {
 
 namespace parser {
-  class Grammar;
+  class Parser;
 }  // namespace parser
 
 namespace nodes {
 
 class Node {
-  friend ::calc::parser::Grammar;
+  friend class ::calc::parser::Grammar;
 
  public:
   Node(Precedence precedence) : priority_(precedence) {}
-  virtual ~Node() {}
+  virtual ~Node();
 
   float GetValue() { return ComputeValue(); }
 
  protected:
-  Node* parent_;
-  Node* left_;
-  Node* right_;
+  Node* parent_ = nullptr;
+  Node* left_ = nullptr;
+  Node* right_ = nullptr;
   const Priority priority_;
  
  private:
@@ -34,7 +33,7 @@ class Node {
 
   virtual float ComputeValue();
   virtual bool IsValidParent(const Node&) const;
-  virtual std::shared_ptr<Node> ExtendTree(Node& parent);
+  virtual Node* ExtendTree(Node*);
 };
 
 }  // namespace nodes

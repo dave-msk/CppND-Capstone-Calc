@@ -13,23 +13,6 @@ namespace fsm {
 template<typename Trans>
 class Graph {
  public:
-  explicit Graph();
-
-  bool IsTerminal() const;
-  std::string NextState(const Trans&) const;
-
-  bool Step(const Trans&);
-  bool HasState(const std::string&);
-  bool AddState(std::string, bool);
-  bool SetStateTerminal(const std::string&, bool);
-  bool DefineTransition(const std::string&, const std::string&, Trans);
-  bool RemoveTransition(const std::string&, const Trans&);
-  
-  void Reset();
-
-  // void PrintState(const std::string&) const;
-  
- private:
   struct State {
     State(std::string id, bool terminal)
         : kId(std::move(id)), terminal(terminal) {}
@@ -39,6 +22,24 @@ class Graph {
     std::unordered_map<Trans, std::string> trans_map;
   };
 
+  Graph();
+
+  bool IsTerminal() const;
+  std::string NextState(const Trans&) const;
+  std::string GetCurrentState() const;
+  auto cbegin() const;
+  auto cend() const;
+
+  bool Step(const Trans&);
+  bool HasState(const std::string&);
+  bool AddState(std::string, bool);
+  bool SetStateTerminal(const std::string&, bool);
+  bool DefineTransition(const std::string&, const std::string&, Trans);
+  bool RemoveTransition(const std::string&, const Trans&);
+  
+  void Reset();
+  
+ private:
   std::unordered_map<std::string, State> states_;
   std::string curr_state_id_;
 };
@@ -58,6 +59,21 @@ std::string Graph<Trans>::NextState(const Trans& transition) const {
   auto state_it = states_.find(curr_state_id_);
   auto id_it = state_it->second.trans_map.find(transition);
   return (id_it == state_it->second.trans_map.end()) ? "" : id_it->second;
+}
+
+template<typename Trans>
+std::string Graph<Trans>::GetCurrentState() const {
+  return curr_state_id_;
+}
+
+template<typename Trans>
+auto Graph<Trans>::cbegin() const {
+  return states_.cbegin();
+}
+
+template<typename Trans>
+auto Graph<Trans>::cend() const {
+  return states_.cend();
 }
 
 template<typename Trans>
@@ -107,7 +123,7 @@ bool Graph<Trans>::RemoveTransition(const std::string& id,
                                     const Trans& transition) {
   if (!HasState(id)) return false;
   auto state_it = states_.find(id);
-  auto &state = state_it->second;
+  auto& state = state_it->second;
   auto trans_it = state.trans_map.find(transition);
   if (trans_it == state.trans_map.end()) return false;
   state.trans_map.erase(trans_it);

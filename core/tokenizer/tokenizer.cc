@@ -15,6 +15,7 @@ Tokenizer::Tokenizer(std::unique_ptr<fsm::Graph<char>> graph)
     : graph_(std::move(graph)) {}
 
 std::vector<std::string> Tokenizer::Tokenize(const std::string& input) const {
+  graph_->Reset();
   std::vector<std::string> tokens;
 
   std::stringstream ss;
@@ -30,7 +31,6 @@ std::vector<std::string> Tokenizer::Tokenize(const std::string& input) const {
       tokens.emplace_back(token);
       ss.clear();
       ss.str(std::string());
-      graph_->Reset();
     } else if (!token.empty()) {
       throw InvalidTokenException("Unknown token: " + token);
     }
@@ -46,7 +46,6 @@ std::vector<std::string> Tokenizer::Tokenize(const std::string& input) const {
 
   if (!ss.str().empty()) {
     tokens.emplace_back(ss.str());
-    graph_->Reset();
   }
 
   return tokens;

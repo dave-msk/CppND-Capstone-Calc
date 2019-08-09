@@ -10,7 +10,7 @@ namespace calc {
 namespace nodes {
 
 std::unique_ptr<Node> CreateNode(Constant);
-std::unique_ptr<Node> CreateNode(float);
+std::unique_ptr<Node> CreateNode(const Literal&);
 
 }  // namespace nodes
 }  // namespace calc

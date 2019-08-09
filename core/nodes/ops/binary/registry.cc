@@ -17,27 +17,27 @@ std::unique_ptr<Node> CreateNode(BinaryOpType type) {
 
   switch (type) {
     case BinaryOpType::ADD: {
-      func = &binaryfn::Add;
+      func =& binaryfn::Add;
       prec = Precedence::TWO;
       break;
     }
     case BinaryOpType::MINUS: {
-      func = &binaryfn::Minus;
+      func =& binaryfn::Minus;
       prec = Precedence::TWO;
       break;
     }
     case BinaryOpType::MULTIPLY: {
-      func = &binaryfn::Multiply;
+      func =& binaryfn::Multiply;
       prec = Precedence::FOUR;
       break;
     }
     case BinaryOpType::DIVIDE: {
-      func = &binaryfn::Divide;
+      func =& binaryfn::Divide;
       prec = Precedence::FOUR;
       break;
     }
     case BinaryOpType::POWER: {
-      func = &binaryfn::Power;
+      func =& binaryfn::Power;
       prec = Precedence::FIVE;
       break;
     }

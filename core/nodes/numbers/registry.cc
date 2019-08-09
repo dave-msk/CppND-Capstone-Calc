@@ -24,8 +24,8 @@ std::unique_ptr<Node> CreateNode(Constant constant) {
   return CreateNode(value);
 }
 
-std::unique_ptr<Node> CreateNode(float value) {
-  return std::unique_ptr<Node>(new Number(value));
+std::unique_ptr<Node> CreateNode(const Literal& literal) {
+  return std::unique_ptr<Node>(new Number(literal.value));
 }
 
 }  // namespace nodes

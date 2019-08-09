@@ -16,7 +16,7 @@ class Tokenizer {
   std::vector<std::string> Tokenize(const std::string&) const;
 
  private:
-  std::unique_ptr<fsm::Graph<char>> graph_;
+  std::unique_ptr<::calc::fsm::Graph<char>> graph_;
 };
 
 }  // namespace tokens

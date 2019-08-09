@@ -1,5 +1,5 @@
-#ifndef CPPND_CAPSTONE_CALC_CORE_PARSER_GRAMMAR_H_
-#define CPPND_CAPSTONE_CALC_CORE_PARSER_GRAMMAR_H_
+#ifndef CPPND_CAPSTONE_CALC_CORE_PARSER_PARSER_H_
+#define CPPND_CAPSTONE_CALC_CORE_PARSER_PARSER_H_
 
 #include <memory>
 #include <string>
@@ -16,35 +16,38 @@
 namespace calc {
 namespace parser {
 
-class Grammar {
+class Parser {
  public:
   using NodeType = std::variant<::calc::nodes::Constant,
+                                ::calc::nodes::Literal,
                                 ::calc::nodes::BinaryOpType,
                                 ::calc::nodes::UnaryOpType,
                                 ::calc::nodes::MiscType>;
   
-  Grammar() = default;
+  explicit Parser(
+      std::unique_ptr<::calc::fsm::Graph<SymbolType>> grammar_graph)
+      : grammar_graph_(std::move(grammar_graph)) {}
 
   void AddSymbol(std::string symbol,
                  SymbolType symbol_type,
                  NodeType node_type);
   
-  void AddRule(std::string src, std::string dst, SymbolType symbol_type);
-  
   std::unique_ptr<Node> Parse(const std::vector<std::string>&);
 
  private:
   struct SymbolMeta {
+    SymbolMeta(SymbolType symbol_type, NodeType node_type)
+        : symbol_type(symbol_type), node_type(node_type) {}
     const SymbolType symbol_type;
     const NodeType node_type;
   };
   using MetaMap = std::unordered_map<std::string, SymbolMeta>;
 
-  std::unordered_map<std::string, MetaMap> states_to_meta_; 
-  ::calc::fsm::Graph<SymbolType> fsm_graph_;
+  std::unordered_map<std::string, MetaMap> meta_map_; 
+  std::unique_ptr<::calc::fsm::Graph<SymbolType>> grammar_graph_;
 };
 
 }  // namespace parser
 }  // namespace calc
 
-#endif  // CPPND_CAPSTONE_CALC_CORE_PARSER_GRAMMAR_H_
+#endif  // CPPND_CAPSTONE_CALC_CORE_PARSER_PARSER_H_

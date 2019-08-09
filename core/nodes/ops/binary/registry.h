@@ -9,7 +9,7 @@
 namespace calc {
 namespace nodes {
 
-std::unique_ptr<Node> CreateNode(BinaryOpType type);
+std::unique_ptr<Node> CreateNode(BinaryOpType);
 
 }  // namespace nodes
 }  // namespace calc
