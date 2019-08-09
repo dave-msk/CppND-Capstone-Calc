@@ -12,7 +12,7 @@ namespace calc {
 namespace parser {
 
 std::unique_ptr<::calc::fsm::Graph<SymbolType>> CreateGrammarGraph(
-    const std::string& filename);
+    const std::string& config_file);
 
 std::unique_ptr<Parser> CreateParser(
     std::unique_ptr<::calc::fsm::Graph<SymbolType>> grammar_graph);
