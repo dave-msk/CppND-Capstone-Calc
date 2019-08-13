@@ -2,6 +2,7 @@
 #define CPPND_CAPSTONE_CALC_CORE_IMPL_PARSER_PARSER_H_
 
 #include <memory>
+#include <mutex>
 #include <string>
 #include <unordered_map>
 #include <variant>
@@ -40,6 +41,7 @@ class GrammarGraphParser : public Parser {
 
   std::unordered_map<std::string, SymbolMeta> symbol_metas_; 
   std::unique_ptr<::calc::fsm::Graph<::calc::lang::SyntaxType>> grammar_graph_;
+  std::mutex mtx_;
 };
 
 }  // namespace parser

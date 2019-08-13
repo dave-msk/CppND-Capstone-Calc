@@ -2,6 +2,7 @@
 #define CPPND_CAPSTONE_CALC_CORE_IMPL_PARSER_TOKENIZER_H_
 
 #include <memory>
+#include <mutex>
 #include <vector>
 
 #include "core/expr.h"
@@ -19,6 +20,7 @@ class CharacterGraphTokenizer : public Tokenizer {
 
  private:
   std::unique_ptr<::calc::fsm::Graph<char>> graph_;
+  std::mutex mtx_;
 };
 
 }  // namespace parser

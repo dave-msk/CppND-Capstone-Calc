@@ -1,6 +1,7 @@
 #include "core/impl/parser/tokenizer.h"
 
 #include <memory>
+#include <mutex>
 #include <sstream>
 #include <utility>
 #include <vector>
@@ -18,6 +19,8 @@ CharacterGraphTokenizer::CharacterGraphTokenizer(
 
 std::vector<std::string>
 CharacterGraphTokenizer::Tokenize(const std::string& input) {
+  std::lock_guard<std::mutex> lock(mtx_);
+
   graph_->Reset();
   std::vector<std::string> tokens;
 
@@ -36,14 +39,14 @@ CharacterGraphTokenizer::Tokenize(const std::string& input) {
       ss.str(std::string());
       graph_->Reset();
     } else if (!token.empty()) {
-      throw InvalidTokenException("Unknown token: " + token);
+      throw InvalidToken("Unknown token: " + token);
     }
 
     if (c == ' ') continue;
     if (graph_->Step(c)) {
       ss << c;
     } else {
-      throw InvalidTokenException(
+      throw InvalidToken(
           "Unable to parse token at index: " + std::to_string(i));
     }
   }

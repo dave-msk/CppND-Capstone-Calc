@@ -28,6 +28,7 @@ const std::vector<Element> vocabulary = {
     Element{"-", SyntaxType::INFIX, SymbolType(BinaryOpType::MINUS)},
     Element{"*", SyntaxType::INFIX, SymbolType(BinaryOpType::MULTIPLY)},
     Element{"/", SyntaxType::INFIX, SymbolType(BinaryOpType::DIVIDE)},
+    Element{"^", SyntaxType::INFIX, SymbolType(BinaryOpType::POWER)},
     Element{"+", SyntaxType::PREFIX, SymbolType(UnaryOpType::IDENTITY)},
     Element{"-", SyntaxType::PREFIX, SymbolType(UnaryOpType::NEGATE)},
     Element{"pi", SyntaxType::VALUE, SymbolType(Constant::PI)},

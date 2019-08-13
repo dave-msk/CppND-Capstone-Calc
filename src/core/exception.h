@@ -5,7 +5,12 @@
 
 namespace calc {
 
-class InvalidTokenException : public utils::Exception {
+class InvalidToken : public utils::Exception {
+ public:
+  using utils::Exception::Exception;
+};
+
+class InvalidSyntax : public utils::Exception {
  public:
   using utils::Exception::Exception;
 };

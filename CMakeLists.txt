@@ -17,6 +17,7 @@ include_directories( ./src )
 # target
 add_executable(
   calc
+  ./src/core/calculator.cc
   ./src/core/impl/nodes/binary.cc
   ./src/core/impl/nodes/factories.cc
   ./src/core/impl/nodes/misc.cc
@@ -29,7 +30,7 @@ add_executable(
   ./src/core/impl/parser/tokenizer.cc
   ./src/core/lang/logic.cc
   ./src/core/lang/vocabulary.cc
-  ./src/test.cc
+  ./src/main.cc
   ./src/ui/shell.cc
 )
 

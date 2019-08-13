@@ -1,14 +1,13 @@
 #include "core/impl/parser/parser.h"
 
-#include <iostream>
-#include <typeinfo>
-
 #include <memory>
+#include <mutex>
 #include <string>
 #include <tuple>
 #include <utility>
 #include <variant>
 
+#include "core/exception.h"
 #include "core/expr.h"
 #include "core/fsm/graph.h"
 #include "core/impl/nodes/factories.h"
@@ -42,6 +41,8 @@ std::unique_ptr<::calc::Expression> GrammarGraphParser::Parse(
   using ::calc::lang::SyntaxType;
   using ::calc::impl::nodes::Node;
 
+  std::lock_guard<std::mutex> lock(mtx_);
+
   grammar_graph_->Reset();
   std::vector<SymbolType> symbol_types;
   for (const auto& token : tokens) {
@@ -67,13 +68,14 @@ std::unique_ptr<::calc::Expression> GrammarGraphParser::Parse(
 
     // Case 3: It is neither a valid symbol nor a valid floating point number.
     //   We conclude that the input expression is invalid.
-    return nullptr;
+    throw ::calc::InvalidSyntax(
+        "Invalid symbol \"" + token + "\" at grammar state \""
+        + grammar_graph_->GetCurrentState() + "\"");
   }
 
   // Check if the expression ends in a valid state.
-  if (!grammar_graph_->IsTerminal()) return nullptr;
-
-  std::cout << "Parse L4" << std::endl;
+  if (!grammar_graph_->IsTerminal())
+    throw ::calc::InvalidSyntax("Incomplete expression");
 
   // Construct the expression tree.
   Node* root = new ::calc::impl::nodes::OpenBracket();
@@ -86,14 +88,13 @@ std::unique_ptr<::calc::Expression> GrammarGraphParser::Parse(
     current = current->AddNode(std::visit(visit_fn, symbol_type));
   }
 
-  std::cout << "Parse L5" << std::endl;
-
   // Climb to the real root and destroy the helper root.
-  while (current->parent != root) current = current->parent;
-  root->parent = root->left = root->right = nullptr;
+  while (current != root) current = current->parent;
+  // while (current->parent != root) current = current->parent;
+  current = current->right;
   current->parent = nullptr;
+  root->parent = root->left = root->right = nullptr;
   delete root;
-
 
   return std::unique_ptr<::calc::Expression>(current);
 }
