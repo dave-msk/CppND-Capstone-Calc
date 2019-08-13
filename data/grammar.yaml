@@ -1,7 +1,7 @@
 "states":
-  - {"id" "grammar/start", "terminal": false}
-  - {"id" "grammar/function", "terminal": false}
-  - {"id" "grammar/end", "terminal": true}
+  - {"id": "grammar/start", "terminal": false}
+  - {"id": "grammar/function", "terminal": false}
+  - {"id": "grammar/end", "terminal": true}
 "transitions":
   - {"src": "", "dst": "grammar/start", "transitions": "OP"}
   - {"src": "", "dst": "grammar/function", "transitions": "F"}
