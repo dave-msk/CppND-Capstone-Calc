@@ -31,6 +31,7 @@ std::string Calculator::Compute(const std::string& input) {
   try {
     // 1. Tokenize input
     std::vector tokens = tokenizer_->Tokenize(input);
+    if (tokens.empty()) return "";
 
     // 2. Validate if brackets are balanced
     ValidateBrackets(tokens);

@@ -1,5 +1,5 @@
 # cmake version to be used
-cmake_minimum_required( VERSION 3.0 )
+cmake_minimum_required( VERSION 3.12 )
 
 # project name
 project( calc )
@@ -8,8 +8,12 @@ project( calc )
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# files
+file(COPY ./data DESTINATION ${CMAKE_BINARY_DIR})
+
 # packages
 find_package( yaml-cpp REQUIRED )
+find_package( cxxopts REQUIRED )
 
 #include
 include_directories( ./src )
@@ -35,4 +39,4 @@ add_executable(
 )
 
 # external libs
-target_link_libraries( calc yaml-cpp)
+target_link_libraries(calc yaml-cpp)
