@@ -13,33 +13,34 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-#ifndef CPPND_CAPSTONE_CALC_CORE_IMPL_PARSER_TOKENIZER_H_
-#define CPPND_CAPSTONE_CALC_CORE_IMPL_PARSER_TOKENIZER_H_
+#include "core/lang/binaryfn.h"
 
-#include <memory>
-#include <mutex>
-#include <vector>
-
-#include "core/expr.h"
-#include "core/fsm/graph.h"
+#include <cmath>
 
 namespace calc {
-namespace impl {
-namespace parser {
+namespace lang {
+namespace binaryfn {
 
-class CharacterGraphTokenizer : public Tokenizer {
- public:
-  explicit CharacterGraphTokenizer(std::unique_ptr<::calc::fsm::Graph<char>>);
+float Add(float l, float r) {
+  return l + r;
+}
 
-  std::vector<std::string> Tokenize(const std::string&);
+float Minus(float l, float r) {
+  return l - r;
+}
 
- private:
-  std::unique_ptr<::calc::fsm::Graph<char>> graph_;
-  std::mutex mtx_;
-};
+float Multiply(float l, float r) {
+  return l * r;
+}
 
-}  // namespace parser
-}  // namespace impl
+float Divide(float l, float r) {
+  return l / r;
+}
+
+float Power(float l, float r) {
+  return std::pow(l, r);
+}
+
+}  // namespace binaryfn
+}  // namespace lang
 }  // namespace calc
-
-#endif  // CPPND_CAPSTONE_CALC_CORE_IMPL_PARSER_TOKENIZER_H_

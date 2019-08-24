@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstddef>
+#include <cmath>
 
 enum class Constant : std::size_t {
   ONE = 1,
@@ -7,9 +8,7 @@ enum class Constant : std::size_t {
 };
 
 int main() {
-  std::cout << (Constant::ONE < Constant::TWO) << std::endl;
-  std::cout << (Constant::TWO < Constant::ONE) << std::endl;
-  std::cout << (Constant::ONE == Constant::ONE) << std::endl;
+  std::cout << std::log(2) << std::endl;
 
   return 0;
 }

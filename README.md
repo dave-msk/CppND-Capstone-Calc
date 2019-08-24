@@ -28,6 +28,48 @@ calc [-n num-config] [-g grammar-config]
 - `<num-config>`: Path to the YAML file containing the configuration of numeral token parsing finite state machine graph. Defaults to `data/numeral.yaml`.
 - `<grammar-config>`: Path to the YAML file containing the configuration of grammar parsing finite state machine graph. Defaults to `data/grammar.yaml`.
 
+## Extension Guide
+
+The project is structured such that elements could be added with minimal effort. Introduction of an element involves the following process:
+
+### 1. Define Logic (Functions)
+
+Provide the declaration and definition of binary function in `core/lang/binaryfn.h` and `core/lang/binaryfn.cc` respectively. If the function being introduced is unary, do the same in `core/lang/unary.h` and `core/lang/unary.cc` instead.
+
+### 2. Add Symbol Type
+
+Add a new symbol type to your new element in `core/lang/symbols.h` in the corresponding enum class. For instance, if you are adding the unary function `log`, add `LOG` to `UnaryOpType`.
+
+### 3. Register Type to Factory
+
+Register the newly added symbol type to its corresponding factory in `core/lang/logic.cc`. Using the previous example, one would need to add `UnaryOpType::LOG` to the switch case in `GetUnaryFn` that returns a pointer to the `log` function defined in (1).
+
+### 4. Register Element to Vocabulary
+
+Register the element to the vocabulary in `core/lang/vocabulary.cc`. It requires a symbol string as token, a `SyntaxType` for grammar parsing, and a `SymbolType` for node instantiation. Using our `log` example, one would need to add the following element to the vocabulary `vector`:
+
+```cpp
+Element{"log", SyntaxType::FUNCTION, SymbolType(UnaryOpType::LOG)}
+```
+
+### 5. Register Symbol Type to `CreateNode` Factory (Functions)
+
+The last step would be to register the introduced symbol type to its corresponding `CreateNode` factory for expression parsing if the new element is a function. Here, if the new element is a binary, prefix or suffix operator, one would need to provide precedence information.
+
+For unary functions, the new element could be any of the following:
+
+- Function
+- Prefix Operator
+- Suffix Operator
+
+In the case of a function, no extra information is needed, adding an additional switch case to apply the same logic as `UnaryOpType::TANH` does would be sufficient. For the others, the return value would have to include the `Precedence`, a boolean `true` for prefix and `false` for suffix, and the function (`func`) itself to the `UnaryOp` constructor.
+
+The binary operator case is simpler as only the `Precedence` is needed for the `BinaryOp` constructor other than `func`.
+
+### 6. Rebuild Project
+
+Rebuild the project and witness the change.
+
 ## Design
 
 The calculator mainly consists of three components -- tokenizer, parser and user interface. A string of math expression is first accepted from the user interface. It is then split into tokens by the tokenizer. The tokens are then parsed into an abstract syntax tree for expression evaluation. Finally, the result is returned through the user interface.
